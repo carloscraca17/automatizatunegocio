@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Autogestión para Estéticas y Barberías</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a; 
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-1: #3b82f6; 
+            --accent-2: #8b5cf6; 
+            --gold: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 80px;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grilla de Características */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Secciones Divididas */
+        .split-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .split-content, .split-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .split-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .split-content p {
+            color: var(--text-muted); 
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .split-content ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .split-content ul li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .split-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-1);
+            font-weight: bold;
+        }
+
+        .image-mockup {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
+
+        .image-mockup:hover {
+            transform: scale(1.02);
+        }
+
+        /* Imágenes con trigger de Modal */
+        .lightbox-trigger {
+            width: 100%;
+            display: block;
+            cursor: zoom-in; 
+            background-color: #1e293b;
+        }
+
+        /* Mockup Teléfono para el Video */
+        .mobile-mockup {
+            max-width: 300px;
+            margin: 0 auto;
+            border-radius: 36px;
+            border: 12px solid #1e293b;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            background: #000;
+            transition: transform 0.4s ease;
+            position: relative; /* Agregado para contener el recorte */
+        }
+
+        .mobile-mockup:hover {
+            transform: translateY(-10px);
+        }
+
+        /* AJUSTE MAGICO PARA OCULTAR LA BARRA DE IOS */
+        .mobile-mockup video {
+            width: 102%;            /* Lo hacemos apenas más ancho */
+            margin-left: -1%;       /* Lo centramos */
+            margin-top: -11%;       /* Subimos el video para ocultar el notch/barra de estado */
+            margin-bottom: -2%;     /* Ajustamos abajo para compensar */
+            display: block;
+        }
+
+        /* Fidelización Box en el Video */
+        .loyalty-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .loyalty-icon {
+            font-size: 2rem;
+        }
+
+        /* Banner de Escalabilidad (Ahora al final) */
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        /* ESTILOS PARA EL MODAL (LIGHTBOX) */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(8px); 
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER / HERO -->
+        <section class="hero">
+            <h1>El Motor de tu Negocio,<br><span class="text-gradient">100% en Automático</span></h1>
+            <p>La plataforma definitiva de autogestión de turnos. Diseñada para que estéticas y barberías escalen sin preocuparse por la agenda.</p>
+        </section>
+
+        <!-- SECCIÓN 1: FUNCIONALIDADES CLAVE -->
+        <section id="funcionalidades" style="padding-top: 0;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Todo lo que necesitas para operar</h2>
+            <div class="features-grid">
+                <div class="card">
+                    <h3>Agenda Inteligente 24/7</h3>
+                    <p>Tus clientes ven tu disponibilidad real y reservan en cualquier momento. Adiós a las horas perdidas respondiendo mensajes.</p>
+                </div>
+                <div class="card">
+                    <h3>Catálogo de Servicios</h3>
+                    <p>Exhibe tu menú con claridad. Define tiempos, profesionales asignados y precios para que el cliente elija exactamente lo que busca.</p>
+                </div>
+                <div class="card">
+                    <h3>CRM y Base de Datos</h3>
+                    <p>Cada reserva crea un perfil automático. Conoce el historial de tus clientes, sus preferencias y frecuencias de visita.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PANEL PRINCIPAL (Texto Izquierda / Imagen Derecha) -->
+        <section id="panel-principal">
+            <div class="split-section">
+                <div class="split-content">
+                    <h2><span class="text-gradient">Panel de Control</span> Centralizado</h2>
+                    <p>Todo lo que ocurre en tu negocio, a simple vista. Una vista principal diseñada para brindarte un resumen rápido y operativo de tu día.</p>
+                    <ul>
+                        <li><strong>Turnos del Día:</strong> Visualiza rápidamente quiénes son tus próximos clientes.</li>
+                        <li><strong>Gestión de Profesionales:</strong> Asigna o reasigna citas según la disponibilidad de tu equipo.</li>
+                        <li><strong>Accesibilidad Inmediata:</strong> Bloquea horarios o modifica reservas con un par de clics.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <div class="image-mockup">
+                        <img src="https://i.ibb.co/vCvPNxRL/Captura-de-pantalla-2026-08-31-204201.png" alt="Panel Principal" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: BALANCE Y ESTADÍSTICAS (Imagen Izquierda / Texto Derecha) -->
+        <section id="balance">
+            <div class="split-section" style="flex-direction: row-reverse;">
+                <div class="split-content">
+                    <h2><span class="text-gradient">Balance y Estadísticas</span> en tiempo real</h2>
+                    <p>Toma decisiones basadas en datos concretos, no en suposiciones. El módulo de balance te permite entender la salud financiera de tu estudio al instante.</p>
+                    <ul>
+                        <li><strong>Reportes Detallados:</strong> Visualiza tu facturación mensual o semanal con un solo clic.</li>
+                        <li><strong>Servicios Estrella:</strong> Identifica qué servicios se venden más y cuáles tienen menor rotación.</li>
+                        <li><strong>Métricas de Crecimiento:</strong> Analiza picos de demanda para lanzar promociones estratégicas.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <div class="image-mockup">
+                        <img src="https://i.ibb.co/7xD8XLFb/balance.png" alt="Módulo de balance" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: GALERÍA DE TRABAJOS (Texto Izquierda / Imagen Derecha) -->
+        <section id="galeria">
+            <div class="split-section">
+                <div class="split-content">
+                    <h2><span class="text-gradient">Galería</span> de Trabajos</h2>
+                    <p>El cliente siempre quiere ver resultados antes de reservar. Hemos integrado un espacio visual para que luzcas tu talento.</p>
+                    <ul>
+                        <li><strong>Portafolio Profesional:</strong> Sube fotos de tus mejores cortes, peinados o tratamientos.</li>
+                        <li><strong>Confianza Inmediata:</strong> Ayuda a los nuevos clientes a decidirse al ver la calidad de tu servicio.</li>
+                        <li><strong>Fácil de Actualizar:</strong> Mantén tu catálogo visual siempre fresco y alineado a las nuevas tendencias.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <div class="image-mockup">
+                        <img src="https://i.ibb.co/hFx7ftvK/galeria.png" alt="Galería de trabajos" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL (Imagen Izquierda / Texto Derecha) -->
+        <section id="personalizacion">
+            <div class="split-section" style="flex-direction: row-reverse;">
+                <div class="split-content">
+                    <h2><span class="text-gradient">Personalización</span> a Medida</h2>
+                    <p>La plataforma se adapta a tu identidad. No eres un usuario más en una app genérica, tu sistema lleva el ADN de tu negocio.</p>
+                    <ul>
+                        <li><strong>Tu Marca al Frente:</strong> Integramos tu logo y colores corporativos para que el cliente sienta que está en tu sitio.</li>
+                        <li><strong>Datos de Contacto:</strong> Toda tu información oficial, redes sociales y números de atención al cliente.</li>
+                        <li><strong>Ubicación Exacta:</strong> Enlace directo a Google Maps para que nadie se pierda al buscar tu estudio.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <div class="image-mockup">
+                        <img src="https://i.ibb.co/Z1gGKh06/Captura-de-pantalla-2026-08-31-201623.png" alt="Personalización a medida" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: DEMO VISUAL MÓVIL (VIDEO) Y FIDELIZACIÓN -->
+        <section id="demo" style="text-align: center; padding-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Diseñado para tus Clientes</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Así es como tus clientes interactúan y reservan sus turnos, rápido y sin fricciones desde sus móviles.</p>
+            
+            <!-- Caja de Fidelización -->
+            <div class="loyalty-box">
+                <div class="loyalty-icon">⭐</div>
+                <div>
+                    <h4 style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;">Sistema de Fidelización Integrado</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.95rem;">
+                        Con solo ingresar el número de teléfono con el que están registrados, <strong>tus clientes podrán ver la cantidad de sellos acumulados</strong> para acceder a su próximo servicio gratuito. ¡Aumenta la retención sin tarjetas de cartón!
+                    </p>
+                </div>
+            </div>
+
+            <div class="mobile-mockup">
+                <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788218705/ScreenRecording_08-31-2026_20-18-17_1.mp4" autoplay loop muted playsinline preload="auto"></video>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: ESCALABILIDAD (CTA Banner al final) -->
+        <section id="escalabilidad" style="padding-top: 0;">
+            <div class="cta-banner">
+                <h2>¿Necesitas funciones exclusivas?</h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 20px; font-size: 1.1rem;">
+                    Sabemos que cada barbería o centro de estética tiene dinámicas únicas. 
+                </p>
+                <p style="color: #fff; font-weight: 600;">
+                    <span class="text-gradient">La arquitectura de nuestro sistema es escalable.</span><br>
+                    Si requieres integrar módulos especiales o reportes que no están en la versión base, nuestro equipo de desarrollo los evalúa y los construye a tu medida.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ESTRUCTURA DEL MODAL (VENTANA EMERGENTE PARA IMÁGENES) -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="expandedImg">
+    </div>
+
+    <!-- SCRIPT PARA CONTROLAR EL MODAL -->
+    <script>
+        const modal = document.getElementById("imageModal");
+        const expandedImg = document.getElementById("expandedImg");
+        const closeBtn = document.querySelector(".close-btn");
+        const triggers = document.querySelectorAll(".lightbox-trigger");
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener("click", function() {
+                modal.classList.add("show"); 
+                expandedImg.src = this.src;  
+            });
+        });
+
+        closeBtn.addEventListener("click", function() {
+            modal.classList.remove("show");
+        });
+
+        modal.addEventListener("click", function(event) {
+            if(event.target === modal) {
+                modal.classList.remove("show");
+            }
+        });
+    </script>
+</body>
+</html>
