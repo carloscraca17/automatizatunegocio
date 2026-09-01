@@ -433,13 +433,11 @@
 </head>
 <body>
 
-    <!-- Botón de Tema (Claro/Oscuro) -->
     <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
         ☀️
     </button>
 
-    <!-- Botón Flotante WhatsApp -->
-    <a href="https://wa.me/5491153159517" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+    <a href="https://wa.me/5491153159517?text=Hola,%20quiero%20automatizar%20mi%20negocio." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
@@ -447,13 +445,11 @@
 
     <div class="container">
         
-        <!-- HEADER / HERO -->
         <section class="hero">
             <h1>El Motor de tu Negocio,<br><span class="text-gradient">100% en Automático</span></h1>
             <p>La plataforma definitiva de autogestión de turnos. Diseñada para que estéticas y barberías escalen sin preocuparse por la agenda.</p>
         </section>
 
-        <!-- SECCIÓN 1: FUNCIONALIDADES CLAVE -->
         <section id="funcionalidades" style="padding-top: 0;">
             <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">Todo lo que necesitas para operar</h2>
             <div class="features-grid">
@@ -472,7 +468,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: PANEL PRINCIPAL -->
         <section id="panel-principal">
             <div class="split-section">
                 <div class="split-content">
@@ -492,7 +487,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: BALANCE Y ESTADÍSTICAS -->
         <section id="balance">
             <div class="split-section reverse-layout">
                 <div class="split-content">
@@ -512,7 +506,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 4: GALERÍA DE TRABAJOS -->
         <section id="galeria">
             <div class="split-section">
                 <div class="split-content">
@@ -532,7 +525,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL -->
         <section id="personalizacion">
             <div class="split-section reverse-layout">
                 <div class="split-content">
@@ -552,12 +544,10 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 6: DEMO VISUAL MÓVIL (VIDEO) Y FIDELIZACIÓN -->
         <section id="demo" style="text-align: center; padding-bottom: 50px;">
             <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Diseñado para tus Clientes</h2>
             <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Así es como tus clientes interactúan y reservan sus turnos, rápido y sin fricciones desde sus móviles.</p>
             
-            <!-- Caja de Fidelización -->
             <div class="loyalty-box">
                 <div class="loyalty-icon">⭐</div>
                 <div>
@@ -573,7 +563,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 7: ESCALABILIDAD (CTA Banner al final) -->
         <section id="escalabilidad" style="padding-top: 0;">
             <div class="cta-banner">
                 <h2>¿Necesitas funciones exclusivas?</h2>
@@ -589,13 +578,11 @@
 
     </div>
 
-    <!-- ESTRUCTURA DEL MODAL (VENTANA EMERGENTE PARA IMÁGENES) -->
     <div id="imageModal" class="modal">
         <span class="close-btn">&times;</span>
         <img class="modal-content" id="expandedImg">
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         // === SCRIPT PARA EL MODAL DE IMÁGENES ===
         const modal = document.getElementById("imageModal");
@@ -626,11 +613,10 @@
         themeToggleBtn.addEventListener("click", () => {
             document.body.classList.toggle("light-theme");
             
-            // Cambiar el icono dependiendo del tema activo
             if (document.body.classList.contains("light-theme")) {
-                themeToggleBtn.textContent = "🌙"; // Mostrar luna si estamos en tema claro
+                themeToggleBtn.textContent = "🌙"; 
             } else {
-                themeToggleBtn.textContent = "☀️"; // Mostrar sol si estamos en tema oscuro
+                themeToggleBtn.textContent = "☀️"; 
             }
         });
     </script>
