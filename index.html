@@ -75,7 +75,7 @@
         /* Grilla de Características */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
@@ -113,6 +113,13 @@
             align-items: center;
             gap: 50px;
             flex-wrap: wrap;
+        }
+
+        /* Clase para invertir en escritorio */
+        @media (min-width: 769px) {
+            .reverse-layout {
+                flex-direction: row-reverse;
+            }
         }
 
         .split-content, .split-image {
@@ -164,7 +171,6 @@
             transform: scale(1.02);
         }
 
-        /* Imágenes con trigger de Modal */
         .lightbox-trigger {
             width: 100%;
             display: block;
@@ -174,7 +180,7 @@
 
         /* Mockup Teléfono para el Video */
         .mobile-mockup {
-            max-width: 300px;
+            max-width: 280px; /* Un poco más pequeño para móviles */
             margin: 0 auto;
             border-radius: 36px;
             border: 12px solid #1e293b;
@@ -182,19 +188,18 @@
             overflow: hidden;
             background: #000;
             transition: transform 0.4s ease;
-            position: relative; /* Agregado para contener el recorte */
+            position: relative; 
         }
 
         .mobile-mockup:hover {
             transform: translateY(-10px);
         }
 
-        /* AJUSTE MAGICO PARA OCULTAR LA BARRA DE IOS */
         .mobile-mockup video {
-            width: 102%;            /* Lo hacemos apenas más ancho */
-            margin-left: -1%;       /* Lo centramos */
-            margin-top: -11%;       /* Subimos el video para ocultar el notch/barra de estado */
-            margin-bottom: -2%;     /* Ajustamos abajo para compensar */
+            width: 102%;            
+            margin-left: -1%;       
+            margin-top: -11%;       
+            margin-bottom: -2%;     
             display: block;
         }
 
@@ -216,7 +221,7 @@
             font-size: 2rem;
         }
 
-        /* Banner de Escalabilidad (Ahora al final) */
+        /* Banner de Escalabilidad */
         .cta-banner {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
             border: 1px solid var(--card-border);
@@ -254,12 +259,13 @@
         }
 
         .modal-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95%;
+            max-height: 95%;
             border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             transform: scale(0.95);
             transition: transform 0.3s ease;
+            object-fit: contain; /* Asegura que no se distorsione */
         }
 
         .modal.show .modal-content {
@@ -268,8 +274,8 @@
 
         .close-btn {
             position: absolute;
-            top: 30px;
-            right: 40px;
+            top: 20px;
+            right: 20px;
             color: #fff;
             font-size: 40px;
             font-weight: 300;
@@ -281,6 +287,61 @@
             color: var(--accent-1);
         }
 
+        /* ========================================= */
+        /* MEDIA QUERIES (DISEÑO RESPONSIVO MÓVIL)   */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0; /* Menos padding vertical */
+            }
+
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 40px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem; /* Título más pequeño */
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .split-section {
+                flex-direction: column !important; /* Apilar en columna */
+                gap: 30px;
+                text-align: center;
+            }
+
+            .split-content, .split-image {
+                min-width: 100%; /* Ocupar todo el ancho disponible */
+            }
+
+            .split-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .split-content ul {
+                text-align: left; /* Mantener la lista alineada a la izquierda */
+            }
+
+            .loyalty-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .cta-banner {
+                padding: 40px 20px;
+                margin: 30px 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -295,7 +356,7 @@
 
         <!-- SECCIÓN 1: FUNCIONALIDADES CLAVE -->
         <section id="funcionalidades" style="padding-top: 0;">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Todo lo que necesitas para operar</h2>
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">Todo lo que necesitas para operar</h2>
             <div class="features-grid">
                 <div class="card">
                     <h3>Agenda Inteligente 24/7</h3>
@@ -312,7 +373,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: PANEL PRINCIPAL (Texto Izquierda / Imagen Derecha) -->
+        <!-- SECCIÓN 2: PANEL PRINCIPAL -->
         <section id="panel-principal">
             <div class="split-section">
                 <div class="split-content">
@@ -332,9 +393,10 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: BALANCE Y ESTADÍSTICAS (Imagen Izquierda / Texto Derecha) -->
+        <!-- SECCIÓN 3: BALANCE Y ESTADÍSTICAS -->
         <section id="balance">
-            <div class="split-section" style="flex-direction: row-reverse;">
+            <!-- Usamos la clase reverse-layout en lugar de style en línea -->
+            <div class="split-section reverse-layout">
                 <div class="split-content">
                     <h2><span class="text-gradient">Balance y Estadísticas</span> en tiempo real</h2>
                     <p>Toma decisiones basadas en datos concretos, no en suposiciones. El módulo de balance te permite entender la salud financiera de tu estudio al instante.</p>
@@ -352,7 +414,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 4: GALERÍA DE TRABAJOS (Texto Izquierda / Imagen Derecha) -->
+        <!-- SECCIÓN 4: GALERÍA DE TRABAJOS -->
         <section id="galeria">
             <div class="split-section">
                 <div class="split-content">
@@ -372,9 +434,10 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL (Imagen Izquierda / Texto Derecha) -->
+        <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL -->
         <section id="personalizacion">
-            <div class="split-section" style="flex-direction: row-reverse;">
+            <!-- Usamos la clase reverse-layout en lugar de style en línea -->
+            <div class="split-section reverse-layout">
                 <div class="split-content">
                     <h2><span class="text-gradient">Personalización</span> a Medida</h2>
                     <p>La plataforma se adapta a tu identidad. No eres un usuario más en una app genérica, tu sistema lleva el ADN de tu negocio.</p>
@@ -394,7 +457,7 @@
 
         <!-- SECCIÓN 6: DEMO VISUAL MÓVIL (VIDEO) Y FIDELIZACIÓN -->
         <section id="demo" style="text-align: center; padding-bottom: 50px;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Diseñado para tus Clientes</h2>
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Diseñado para tus Clientes</h2>
             <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Así es como tus clientes interactúan y reservan sus turnos, rápido y sin fricciones desde sus móviles.</p>
             
             <!-- Caja de Fidelización -->
