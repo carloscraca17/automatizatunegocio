@@ -6,6 +6,7 @@
     <title>Plataforma de Autogestión para Estéticas y Barberías</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
+        /* Variables TEMA OSCURO (Por defecto) */
         :root {
             --bg-color: #0f172a; 
             --card-bg: rgba(255, 255, 255, 0.03);
@@ -15,6 +16,19 @@
             --accent-1: #3b82f6; 
             --accent-2: #8b5cf6; 
             --gold: #f59e0b;
+            --mockup-border: #1e293b;
+            --modal-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        /* Variables TEMA CLARO */
+        body.light-theme {
+            --bg-color: #f8fafc; 
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.08);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --mockup-border: #cbd5e1;
+            --modal-bg: rgba(255, 255, 255, 0.85);
         }
 
         * {
@@ -29,6 +43,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .text-gradient {
@@ -45,6 +60,62 @@
 
         section {
             padding: 100px 0;
+        }
+
+        /* Botón Tema Claro/Oscuro */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-1);
+        }
+
+        /* Botón Flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(0,0,0,0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: currentColor;
         }
 
         /* Hero Section */
@@ -91,15 +162,14 @@
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
         }
 
         .card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #fff;
+            color: var(--text-main);
         }
 
         .card p {
@@ -115,7 +185,6 @@
             flex-wrap: wrap;
         }
 
-        /* Clase para invertir en escritorio */
         @media (min-width: 769px) {
             .reverse-layout {
                 flex-direction: row-reverse;
@@ -163,7 +232,7 @@
             border-radius: 20px;
             border: 1px solid var(--card-border);
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
             transition: transform 0.5s ease;
         }
 
@@ -175,19 +244,19 @@
             width: 100%;
             display: block;
             cursor: zoom-in; 
-            background-color: #1e293b;
+            background-color: var(--mockup-border);
         }
 
         /* Mockup Teléfono para el Video */
         .mobile-mockup {
-            max-width: 280px; /* Un poco más pequeño para móviles */
+            max-width: 280px; 
             margin: 0 auto;
             border-radius: 36px;
-            border: 12px solid #1e293b;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            border: 12px solid var(--mockup-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             background: #000;
-            transition: transform 0.4s ease;
+            transition: all 0.4s ease;
             position: relative; 
         }
 
@@ -217,6 +286,14 @@
             text-align: left;
         }
 
+        .loyalty-box h4 {
+            color: var(--text-main);
+        }
+
+        .loyalty-box p {
+            color: var(--text-muted);
+        }
+
         .loyalty-icon {
             font-size: 2rem;
         }
@@ -229,11 +306,17 @@
             padding: 60px 40px;
             text-align: center;
             margin: 50px 0;
+            transition: border-color 0.4s ease;
         }
 
         .cta-banner h2 {
             font-size: 2rem;
             margin-bottom: 15px;
+        }
+
+        .cta-banner p.highlight-text {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         /* ESTILOS PARA EL MODAL (LIGHTBOX) */
@@ -245,7 +328,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 23, 42, 0.85); 
+            background-color: var(--modal-bg); 
             backdrop-filter: blur(8px); 
             align-items: center;
             justify-content: center;
@@ -262,10 +345,10 @@
             max-width: 95%;
             max-height: 95%;
             border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             transform: scale(0.95);
             transition: transform 0.3s ease;
-            object-fit: contain; /* Asegura que no se distorsione */
+            object-fit: contain; 
         }
 
         .modal.show .modal-content {
@@ -276,11 +359,12 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            color: #fff;
+            color: var(--text-main);
             font-size: 40px;
             font-weight: 300;
             cursor: pointer;
             transition: color 0.3s ease;
+            z-index: 10000;
         }
 
         .close-btn:hover {
@@ -292,7 +376,7 @@
         /* ========================================= */
         @media (max-width: 768px) {
             section {
-                padding: 60px 0; /* Menos padding vertical */
+                padding: 60px 0; 
             }
 
             .hero {
@@ -302,7 +386,7 @@
             }
 
             .hero h1 {
-                font-size: 2.2rem; /* Título más pequeño */
+                font-size: 2.2rem; 
             }
 
             .hero p {
@@ -310,13 +394,9 @@
             }
 
             .split-section {
-                flex-direction: column !important; /* Apilar en columna */
+                flex-direction: column !important; 
                 gap: 30px;
                 text-align: center;
-            }
-
-            .split-content, .split-image {
-                min-width: 100%; /* Ocupar todo el ancho disponible */
             }
 
             .split-content h2 {
@@ -324,7 +404,7 @@
             }
 
             .split-content ul {
-                text-align: left; /* Mantener la lista alineada a la izquierda */
+                text-align: left; 
             }
 
             .loyalty-box {
@@ -341,10 +421,29 @@
             .cta-banner h2 {
                 font-size: 1.6rem;
             }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Botón de Tema (Claro/Oscuro) -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+        ☀️
+    </button>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://wa.me/5491153159517" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
 
     <div class="container">
         
@@ -395,7 +494,6 @@
 
         <!-- SECCIÓN 3: BALANCE Y ESTADÍSTICAS -->
         <section id="balance">
-            <!-- Usamos la clase reverse-layout en lugar de style en línea -->
             <div class="split-section reverse-layout">
                 <div class="split-content">
                     <h2><span class="text-gradient">Balance y Estadísticas</span> en tiempo real</h2>
@@ -436,7 +534,6 @@
 
         <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL -->
         <section id="personalizacion">
-            <!-- Usamos la clase reverse-layout en lugar de style en línea -->
             <div class="split-section reverse-layout">
                 <div class="split-content">
                     <h2><span class="text-gradient">Personalización</span> a Medida</h2>
@@ -464,8 +561,8 @@
             <div class="loyalty-box">
                 <div class="loyalty-icon">⭐</div>
                 <div>
-                    <h4 style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;">Sistema de Fidelización Integrado</h4>
-                    <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.95rem;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 5px;">Sistema de Fidelización Integrado</h4>
+                    <p style="font-size: 0.95rem;">
                         Con solo ingresar el número de teléfono con el que están registrados, <strong>tus clientes podrán ver la cantidad de sellos acumulados</strong> para acceder a su próximo servicio gratuito. ¡Aumenta la retención sin tarjetas de cartón!
                     </p>
                 </div>
@@ -483,7 +580,7 @@
                 <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 20px; font-size: 1.1rem;">
                     Sabemos que cada barbería o centro de estética tiene dinámicas únicas. 
                 </p>
-                <p style="color: #fff; font-weight: 600;">
+                <p class="highlight-text">
                     <span class="text-gradient">La arquitectura de nuestro sistema es escalable.</span><br>
                     Si requieres integrar módulos especiales o reportes que no están en la versión base, nuestro equipo de desarrollo los evalúa y los construye a tu medida.
                 </p>
@@ -498,8 +595,9 @@
         <img class="modal-content" id="expandedImg">
     </div>
 
-    <!-- SCRIPT PARA CONTROLAR EL MODAL -->
+    <!-- SCRIPTS -->
     <script>
+        // === SCRIPT PARA EL MODAL DE IMÁGENES ===
         const modal = document.getElementById("imageModal");
         const expandedImg = document.getElementById("expandedImg");
         const closeBtn = document.querySelector(".close-btn");
@@ -519,6 +617,20 @@
         modal.addEventListener("click", function(event) {
             if(event.target === modal) {
                 modal.classList.remove("show");
+            }
+        });
+
+        // === SCRIPT PARA EL TEMA CLARO/OSCURO ===
+        const themeToggleBtn = document.getElementById("themeToggle");
+        
+        themeToggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-theme");
+            
+            // Cambiar el icono dependiendo del tema activo
+            if (document.body.classList.contains("light-theme")) {
+                themeToggleBtn.textContent = "🌙"; // Mostrar luna si estamos en tema claro
+            } else {
+                themeToggleBtn.textContent = "☀️"; // Mostrar sol si estamos en tema oscuro
             }
         });
     </script>
