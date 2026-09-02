@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma de Autogestión para Estéticas y Barberías</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* Variables TEMA OSCURO (Por defecto) */
         :root {
@@ -345,7 +347,7 @@
             font-weight: 800;
         }
 
-        /* Efecto Glow en las imágenes */
+        /* Efecto Glow en las imágenes/videos */
         .image-glow-wrapper {
             position: relative;
             width: 100%;
@@ -379,17 +381,21 @@
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             transition: transform 0.5s ease;
+            background-color: var(--mockup-border); 
         }
 
         .image-mockup:hover {
             transform: scale(1.02);
         }
 
-        .lightbox-trigger {
+        .image-mockup video, .image-mockup img {
             width: 100%;
             display: block;
+        }
+
+        /* Cursor visual indicando que se puede hacer zoom */
+        .lightbox-trigger {
             cursor: zoom-in; 
-            background-color: var(--mockup-border);
         }
 
         /* Banner de Alertas (Mail + WhatsApp) */
@@ -481,7 +487,7 @@
 
         /* Mockup Teléfono para el Video */
         .mobile-mockup {
-            max-width: 280px; 
+            max-width: 380px; 
             margin: 0 auto;
             border-radius: 36px;
             border: 12px solid var(--mockup-border);
@@ -502,25 +508,6 @@
             margin-top: -11%;       
             margin-bottom: -2%;     
             display: block;
-        }
-
-        /* Fidelización Box en el Video */
-        .loyalty-box {
-            background: rgba(245, 158, 11, 0.08);
-            border: 1px solid rgba(245, 158, 11, 0.25);
-            border-radius: 16px;
-            padding: 22px;
-            max-width: 620px;
-            margin: 0 auto 40px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            text-align: left;
-        }
-
-        .loyalty-icon {
-            font-size: 2.2rem;
-            flex-shrink: 0;
         }
 
         /* FAQ Accordion */
@@ -577,7 +564,7 @@
             padding: 0 25px 22px 25px;
         }
 
-        /* Banner de Escalabilidad + Dominio */
+        /* Banner de Escalabilidad */
         .cta-banner {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
             border: 1px solid var(--card-border);
@@ -593,7 +580,7 @@
             margin-bottom: 15px;
         }
 
-        /* MODAL (LIGHTBOX) */
+        /* MODAL (LIGHTBOX MULTIMEDIA PARA IMÁGENES Y VIDEOS) */
         .modal {
             display: none; 
             position: fixed;
@@ -616,13 +603,14 @@
         }
 
         .modal-content {
-            max-width: 92%;
+            max-width: 90%;
             max-height: 90%;
             border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             transform: scale(0.95);
             transition: transform 0.3s ease;
             object-fit: contain; 
+            outline: none;
         }
 
         .modal.show .modal-content {
@@ -660,10 +648,6 @@
                 font-size: 2.3rem; 
             }
 
-            .hero p {
-                font-size: 1.05rem;
-            }
-
             .split-section {
                 flex-direction: column !important; 
                 gap: 30px;
@@ -678,31 +662,9 @@
                 text-align: left; 
             }
 
-            .loyalty-box {
-                flex-direction: column;
-                text-align: center;
-                padding: 18px;
-            }
-
-            .alert-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-
             .cta-banner {
                 padding: 40px 20px;
                 margin: 30px 0;
-            }
-
-            .cta-banner h2 {
-                font-size: 1.7rem;
-            }
-
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
             }
 
             .btn-group {
@@ -713,6 +675,10 @@
             .btn-primary {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .mobile-mockup {
+                max-width: 330px; 
             }
         }
     </style>
@@ -739,7 +705,6 @@
             <h1>El Motor de tu Negocio,<br><span class="text-gradient">100% en Automático</span></h1>
             <p>La solución definitiva de autogestión de citas. Digitaliza tu agenda, elimina los tiempos muertos en WhatsApp y toma el control total de tu facturación.</p>
             
-            <!-- Botón CTA Único -->
             <div class="btn-group">
                 <a href="https://wa.me/5491153159517?text=Hola,%20quiero%20automatizar%20mi%20negocio." target="_blank" class="btn-primary">
                     🚀 Solicitar Demo en Vivo
@@ -809,7 +774,6 @@
                         <li><strong>Bloqueo Inmediato:</strong> Cancela o bloquea horarios por imprevistos con un solo clic.</li>
                     </ul>
 
-                    <!-- Banner Alertas Mail y WhatsApp -->
                     <div class="alert-banner">
                         <div class="alert-icon">🔔</div>
                         <div>
@@ -823,7 +787,7 @@
                 <div class="split-image">
                     <div class="image-glow-wrapper">
                         <div class="image-mockup">
-                            <img src="https://i.ibb.co/vCvPNxRL/Captura-de-pantalla-2026-08-31-204201.png" alt="Panel Principal" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                            <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788302131/Grabaci%C3%B3n_2026-09-01_193450.mp4" loop muted playsinline preload="metadata" class="lightbox-trigger"></video>
                         </div>
                     </div>
                 </div>
@@ -846,7 +810,7 @@
                 <div class="split-image">
                     <div class="image-glow-wrapper">
                         <div class="image-mockup">
-                            <img src="https://i.ibb.co/7xD8XLFb/balance.png" alt="Módulo de balance" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                            <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788302345/Grabaci%C3%B3n_2026-09-01_193843.mp4" loop muted playsinline preload="metadata" class="lightbox-trigger"></video>
                         </div>
                     </div>
                 </div>
@@ -869,16 +833,39 @@
                 <div class="split-image">
                     <div class="image-glow-wrapper">
                         <div class="image-mockup">
-                            <img src="https://i.ibb.co/hFx7ftvK/galeria.png" alt="Galería de trabajos" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                            <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788302439/Grabaci%C3%B3n_2026-09-01_194025.mp4" loop muted playsinline preload="metadata" class="lightbox-trigger"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 5: FIDELIZACIÓN -->
+        <section id="fidelizacion">
+            <div class="split-section reverse-layout">
+                <div class="split-content">
+                    <span class="badge">⭐ Retención de Clientes</span>
+                    <h2>Sistema de <span class="text-gradient">Fidelización Integrado</span></h2>
+                    <p>Olvida las viejas tarjetas de cartón que se pierden o se rompen. Premiar la lealtad de tus clientes nunca fue tan fácil y automatizado.</p>
+                    <ul>
+                        <li><strong>Consulta Rápida:</strong> Con solo ingresar su número de teléfono, el cliente ve los sellos que lleva acumulados.</li>
+                        <li><strong>Suma Automática:</strong> Cada vez que asisten, el sistema lo registra y les suma el punto sin que tú hagas nada.</li>
+                        <li><strong>Más Recurrencia:</strong> Motiva a tus clientes a volver más seguido para desbloquear su servicio gratuito o beneficio.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <div class="image-glow-wrapper">
+                        <div class="image-mockup">
+                            <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788302975/Grabaci%C3%B3n_2026-09-01_194916.mp4" loop muted playsinline preload="metadata" class="lightbox-trigger"></video>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 5: PERSONALIZACIÓN TOTAL & DOMINIO -->
+        <!-- SECCIÓN 6: PERSONALIZACIÓN TOTAL & DOMINIO -->
         <section id="personalizacion">
-            <div class="split-section reverse-layout">
+            <div class="split-section">
                 <div class="split-content">
                     <span class="badge">🎨 100% Tu Identidad</span>
                     <h2><span class="text-gradient">Personalización</span> a Medida</h2>
@@ -899,13 +886,12 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 6: TABLA COMPARATIVA "ANTES vs CON LA PLATAFORMA" -->
+        <!-- SECCIÓN 7: TABLA COMPARATIVA -->
         <section id="comparativa">
             <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 10px;">Evoluciona tu Forma de Trabajar</h2>
             <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto;">La diferencia entre la gestión tradicional y un sistema automatizado.</p>
             
             <div class="comparison-container">
-                <!-- Antes -->
                 <div class="comp-card before">
                     <div class="comp-header" style="color: var(--red);">
                         <span>🛑</span> Método Tradicional
@@ -919,7 +905,6 @@
                     </ul>
                 </div>
 
-                <!-- Después -->
                 <div class="comp-card after">
                     <div class="comp-header" style="color: var(--green);">
                         <span>🚀 Con la Plataforma</span>
@@ -935,29 +920,18 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 7: DEMO MÓVIL Y FIDELIZACIÓN -->
+        <!-- SECCIÓN 8: DEMO MÓVIL -->
         <section id="demo" style="text-align: center;">
             <span class="badge">📱 Experiencia del Cliente</span>
             <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Diseñado para la Era Móvil</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem;">Así interactúan tus clientes desde sus teléfonos: rápido, elegante y sin descargar nada.</p>
-            
-            <!-- Caja de Fidelización -->
-            <div class="loyalty-box">
-                <div class="loyalty-icon">⭐</div>
-                <div>
-                    <h4 style="font-size: 1.15rem; margin-bottom: 4px;">Sistema de Fidelización Digital Integrado</h4>
-                    <p style="font-size: 0.95rem;">
-                        Con solo ingresar su número de teléfono registrado, <strong>tus clientes consultan sus sellos acumulados</strong> para obtener su beneficio o servicio gratuito. ¡Elimina las tarjetas de papel!
-                    </p>
-                </div>
-            </div>
+            <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.05rem;">Así interactúan tus clientes desde sus teléfonos: rápido, elegante y sin descargar nada.</p>
 
             <div class="mobile-mockup">
-                <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788218705/ScreenRecording_08-31-2026_20-18-17_1.mp4" autoplay loop muted playsinline preload="auto"></video>
+                <video src="https://res.cloudinary.com/ahsxrxpv/video/upload/v1788218705/ScreenRecording_08-31-2026_20-18-17_1.mp4" loop muted playsinline preload="metadata" class="lightbox-trigger"></video>
             </div>
         </section>
 
-        <!-- SECCIÓN 8: PREGUNTAS FRECUENTES (FAQ Accordion) -->
+        <!-- SECCIÓN 9: PREGUNTAS FRECUENTES -->
         <section id="faq">
             <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 10px;">Preguntas Frecuentes</h2>
             <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">Resolvemos tus dudas principales antes de comenzar.</p>
@@ -986,7 +960,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 9: ESCALABILIDAD (CTA Banner al final) -->
+        <!-- SECCIÓN 10: ESCALABILIDAD -->
         <section id="escalabilidad" style="padding-top: 20px;">
             <div class="cta-banner">
                 <h2>¿Necesitas funciones exclusivas?</h2>
@@ -1006,34 +980,54 @@
 
     </div>
 
-    <!-- ESTRUCTURA DEL MODAL (LIGHTBOX IMÁGENES) -->
+    <!-- ESTRUCTURA DEL MODAL (LIGHTBOX MIXTO) -->
     <div id="imageModal" class="modal">
         <span class="close-btn">&times;</span>
-        <img class="modal-content" id="expandedImg">
+        <img class="modal-content" id="expandedImg" style="display:none;">
+        <video class="modal-content" id="expandedVideo" style="display:none;" autoplay loop muted playsinline controls></video>
     </div>
 
     <!-- SCRIPTS -->
     <script>
-        // === SCRIPT MODAL IMÁGENES ===
+        // === SCRIPT MODAL MULTIMEDIA (IMÁGENES Y VIDEOS) ===
         const modal = document.getElementById("imageModal");
         const expandedImg = document.getElementById("expandedImg");
+        const expandedVideo = document.getElementById("expandedVideo");
         const closeBtn = document.querySelector(".close-btn");
         const triggers = document.querySelectorAll(".lightbox-trigger");
 
         triggers.forEach(trigger => {
             trigger.addEventListener("click", function() {
                 modal.classList.add("show"); 
-                expandedImg.src = this.src;  
+                
+                if (this.tagName === 'VIDEO') {
+                    // Es un video
+                    expandedImg.style.display = 'none';
+                    expandedVideo.style.display = 'block';
+                    expandedVideo.src = this.src;
+                    expandedVideo.play();
+                } else {
+                    // Es una imagen
+                    expandedVideo.style.display = 'none';
+                    expandedVideo.pause();
+                    expandedImg.style.display = 'block';
+                    expandedImg.src = this.src;  
+                }
             });
         });
 
-        closeBtn.addEventListener("click", function() {
+        const closeModal = () => {
             modal.classList.remove("show");
-        });
+            expandedVideo.pause();
+            expandedVideo.src = "";
+            expandedImg.src = "";
+        };
+
+        closeBtn.addEventListener("click", closeModal);
 
         modal.addEventListener("click", function(event) {
             if(event.target === modal) {
-                modal.classList.remove("show");
+                closeModal();
             }
         });
 
@@ -1057,7 +1051,6 @@
             question.addEventListener("click", () => {
                 const faqItem = question.parentElement;
                 
-                // Cerrar otros abiertos opcionalmente
                 document.querySelectorAll(".faq-item").forEach(item => {
                     if (item !== faqItem) {
                         item.classList.remove("active");
@@ -1066,6 +1059,29 @@
 
                 faqItem.classList.toggle("active");
             });
+        });
+
+        // === OPTIMIZACIÓN DE VIDEOS (LAZY PLAY) ===
+        document.addEventListener("DOMContentLoaded", () => {
+            const videos = document.querySelectorAll("video:not(#expandedVideo)");
+            
+            if ("IntersectionObserver" in window) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.play();
+                        } else {
+                            entry.target.pause();
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                videos.forEach((video) => {
+                    videoObserver.observe(video);
+                });
+            } else {
+                videos.forEach(video => video.play());
+            }
         });
     </script>
 </body>
