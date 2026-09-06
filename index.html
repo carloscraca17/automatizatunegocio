@@ -744,7 +744,7 @@
             margin-bottom: 15px;
         }
 
-        /* MODAL (LIGHTBOX) */
+        /* MODAL (LIGHTBOX MULTIMEDIA PARA IMÁGENES Y VIDEOS) */
         .modal {
             display: none; 
             position: fixed;
@@ -837,12 +837,11 @@
             }
 
             .hero-overlay {
-                /* Suavizado también en móvil de abajo hacia arriba */
-                background: linear-gradient(to top, var(--bg-color) 10%, rgba(11, 15, 25, 0.8) 45%, rgba(11, 15, 25, 0) 100%);
+                background: linear-gradient(to top, rgba(11, 15, 25, 1) 10%, rgba(11, 15, 25, 0.8) 40%, rgba(11, 15, 25, 0.3) 100%);
             }
 
             body.light-theme .hero-overlay {
-                background: linear-gradient(to top, var(--bg-color) 10%, rgba(248, 250, 252, 0.8) 45%, rgba(248, 250, 252, 0) 100%);
+                background: linear-gradient(to top, rgba(248, 250, 252, 1) 10%, rgba(248, 250, 252, 0.8) 40%, rgba(248, 250, 252, 0.3) 100%);
             }
 
             .split-section {
@@ -952,7 +951,7 @@
         <!-- SECCIÓN 1: FUNCIONALIDADES CLAVE -->
         <section id="funcionalidades" style="padding-top: 10px;">
             <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 10px;">Todo lo que necesitas para operar</h2>
-            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">Una suite integral de herramientas diseñadas específicamente para el sector estético.</p>
+            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">Una suite integral de herramientas diseñadas specifically para el sector estético.</p>
             
             <div class="features-grid">
                 <div class="card">
@@ -1100,7 +1099,8 @@
                 <div class="split-image">
                     <div class="image-glow-wrapper">
                         <div class="image-mockup">
-                            <img src="https://i.ibb.co/Z1gGKh06/Captura-de-pantalla-2026-08-31-201623.png" alt="Personalización a medida" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
+                            <!-- IMAGEN OPTIMIZADA DESDE CLOUDINARY -->
+                            <img src="https://res.cloudinary.com/ahsxrxpv/image/upload/q_auto,f_auto/v1788708469/Captura_de_pantalla_2026-08-31_201623.png" alt="Personalización a medida" class="lightbox-trigger" referrerpolicy="no-referrer" loading="lazy">
                         </div>
                     </div>
                 </div>
